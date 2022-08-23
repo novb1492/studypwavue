@@ -28,6 +28,7 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+  <button @click="test">fdfd</button>
 </template>
 
 <script>
@@ -35,6 +36,15 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods:{
+    test() {
+      var title = 'Simple Title';
+      var options = {
+        body: 'Simple piece of body text.\nSecond line of body text :)'
+      };
+      ServiceWorkerRegistration.showNotification(title, options);
+    }
   }
 }
 </script>
