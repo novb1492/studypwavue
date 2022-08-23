@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -34,20 +35,19 @@ export default {
   methods: {
     async registerServiceWorker() {
       alert('a');
-      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.register('sw.js');
 
-      // 이미 등록되어있는 정보 가져오기
-      let registration = await navigator.serviceWorker.getRegistration();
-      if (!registration) {
-        // 없으면 서비스 워커 등록
-        registration = await navigator.serviceWorker.register('/service-worker.js');
-      }
-      var title = 'Simple Title';
-      var options = {
-        body: 'Simple piece of body text.\nSecond line of body text :)'
-      };
-      console.log(registration);
-      registration.showNotification(title,options);
+      Notification.requestPermission((result) => {
+    if (result === 'granted') {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.showNotification('Vibration Sample', {
+          body: 'Buzz! Buzz!',
+          vibrate: [200, 100, 200, 100, 200, 100, 200],
+          tag: 'vibration-sample'
+        });
+      });
+    }
+  });
     }
   }
 }
