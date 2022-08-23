@@ -45,6 +45,7 @@ export default {
       var options = {
         body: 'Simple piece of body text.\nSecond line of body text :)'
       };
+      console.log(registration);
       registration.showNotification(title,options);
     }
   }
