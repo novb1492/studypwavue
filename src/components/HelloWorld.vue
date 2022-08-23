@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async registerServiceWorker() {
-      alert('aㄹㅇㄹ');
+      alert('aㅇㅇㄹㅇㄹ');
       if (!('serviceWorker' in navigator)) return;
 
       // 이미 등록되어있는 정보 가져오기
