@@ -41,7 +41,7 @@ export default {
       let registration = await navigator.serviceWorker.getRegistration();
       if (!registration) {
         // 없으면 서비스 워커 등록
-        registration = await navigator.serviceWorker.register('/service-worker.js');
+        registration = await navigator.serviceWorker.register('./service-worker.js');
       }
       var title = 'Simple Title';
       var options = {
