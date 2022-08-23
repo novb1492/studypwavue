@@ -8,8 +8,10 @@
     </p>
     <h3>Installed CLI Plugins</h3>
     <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank"
+          rel="noopener">babel</a></li>
+      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank"
+          rel="noopener">eslint</a></li>
     </ul>
     <h3>Essential Links</h3>
     <ul>
@@ -19,8 +21,8 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-      <button @click="test">fdfd</button>
-    </div>
+    <button @click="test">fdfd</button>
+  </div>
 </template>
 
 <script>
@@ -29,13 +31,21 @@ export default {
   props: {
     msg: String
   },
-  methods:{
-    test() {
+  methods: {
+    async registerServiceWorker() {
+      if (!('serviceWorker' in navigator)) return;
+
+      // 이미 등록되어있는 정보 가져오기
+      let registration = await navigator.serviceWorker.getRegistration();
+      if (!registration) {
+        // 없으면 서비스 워커 등록
+        registration = await navigator.serviceWorker.register('/service-worker.js');
+      }
       var title = 'Simple Title';
       var options = {
         body: 'Simple piece of body text.\nSecond line of body text :)'
       };
-      ServiceWorkerRegistration.showNotification(title, options);
+      registration.showNotification(title,options);
     }
   }
 }
@@ -46,14 +56,17 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
