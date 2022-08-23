@@ -48,7 +48,7 @@ export default {
         body: 'Simple piece of body text.\nSecond line of body text :)'
       };
       console.log(registration);
-      self.registration.showNotification(title,options);
+      registration.showNotification(title,options);
     }
   }
 }
